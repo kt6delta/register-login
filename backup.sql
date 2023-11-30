@@ -24,20 +24,24 @@ DROP TABLE IF EXISTS `user`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
   `id_user` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(10) NOT NULL,
+  `username` varchar(20) NOT NULL,
   `email` varchar(20) NOT NULL,
   `password` longtext NOT NULL,
+  `date_joined` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `verification_code` varchar(255) CHARACTER SET armscii8 COLLATE armscii8_general_ci NOT NULL,
+  `is_verified` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Si el correo fue veificado',
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `last_login` datetime DEFAULT CURRENT_TIMESTAMP,
+  `imagen` longtext,
   PRIMARY KEY (`id_user`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
+
 -- Dumping data for table `user`
 --
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'kt6delta','kt6delta@outlook.com','pbkdf2:sha256:600000$iKoIN6tfq03B3K0J$0f88af256a29b0b1265accbc1d7d42dc939dd0fbe8b199ddd006ca42ef6f8892');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
